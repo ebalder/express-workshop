@@ -1,0 +1,7 @@
+extend layout
+block content
+
+    #entries
+        ul
+            each entry in entries
+                li: a(href=`firmas/${entry.name}`) #{entry.name}

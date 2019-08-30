@@ -1,23 +1,24 @@
 
-var express = require('express');
+const express = require('express');
+const guestbook = require('../controllers/guestbook');
+
 
 module.exports = function(){
 
-    var router = express.Router();
+    const router = express.Router();
 
     router.route('/')
     .get(function(req, res){
         res.render('index', { title : 'Home' });
-    })
-    .post(function(req, res){
-        var name = req.body.name;
-        var lastname = req.body.lastname;
-
-        res.send({
-            message: 'Hello ' + name + ' ' + lastname
-        });
-
     });
+
+    router.route('/firmas')
+    .post(guestbook.postEntry)
+    .get(guestbook.getEntries);
+
+    router.route('/firmas/:name')
+    .get(guestbook.getEntry);
+
 
     return router;
 

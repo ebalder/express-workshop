@@ -1,0 +1,30 @@
+extend layout
+block content
+ 
+  div
+    label Nombre
+    input#nombre
+  div
+    label Mensaje
+    textarea#mensaje
+
+  button#boton Firmar
+
+  div#saludo
+
+  script.
+    $(document).ready(function(){
+        $('#boton').on('click', function(){
+
+            var nombre = $('#nombre').val();
+            var mensaje = $('#mensaje').val();
+
+            $.post( "/firmas", {name: nombre, message: mensaje})
+                .done( function( data ) {
+                    $('#saludo').html(data);
+                })
+                .error( function( data ) {
+                    $('#saludo').html('Error: ' + data.responseText);
+                });
+        });
+    });

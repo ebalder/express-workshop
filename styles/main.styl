@@ -1,0 +1,83 @@
+
+
+peach-color = #ffF0E9
+avocado-color = #B5FFC0
+blue-pop-color = #50C5FF
+blueberry-color = #3085D0
+maice-color = #fFFFE9
+crust-color = #F0D5D5
+toast-color = #C09585
+
+@import "entries"
+
+body
+    background-color peach-color
+    font-family sans
+
+header
+    margin auto
+    display block
+    max-width 50rem 
+    margin-top 3rem
+    margin-bottom 0
+    color avocado-color
+    h1
+        display block
+        margin 0
+        text-shadow:
+            -1px -1px 0 white,  
+            1px -1px 0 white,
+            -1px 1px 0 white,
+            1px 1px 0 white,
+            -3px -3px 0 blue-pop-color,  
+            3px -3px 0 blue-pop-color,
+            -3px 3px 0 blue-pop-color,
+            3px 3px 0 blue-pop-color;
+
+
+
+footer
+    display block
+    color toast-color
+    margin 5rem
+
+.main-content
+    width 50rem
+    font-size: 1.2rem
+    border solid 3px crust-color
+    border-radius 10px
+    background-color maice-color
+    padding 3rem 2rem
+    margin auto
+    box-shadow:
+        0 0 50px -5px rgba(50, 20, 10, 0.0.5),
+        0 0 10px 0 rgba(0, 0, 0, 0.1)
+    input, textarea
+        display: inline-block
+        border: 2px solid #E0E0E0
+        font-size: 1.2rem
+        width: 40%
+        vertical-align: top
+    label
+        display: inline-block
+        margin-right: 2rem
+        color: blueberry-color
+        width: 20%
+    button
+        background-color peach-color
+        border 2px solid crust-color
+        padding 0.5rem 1rem
+        border-radius: 7px
+        color: toast-color
+        display: block
+        float: right
+        font-size: 1.2rem
+    div
+        margin: 1rem
+
+#saludo
+    font-size: 2rem
+    color toast-color
+    display: block
+    clear: both
+
