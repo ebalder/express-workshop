@@ -1,30 +1,42 @@
-extend layout
-block content
- 
-  div
-    label Nombre
-    input#nombre
-  div
-    label Mensaje
-    textarea#mensaje
+doctype
+html
+  head
+    title Libro de visitas - My Site
+    script(src='/jquery.js')
+  body
+    header
+      h1 Mi libro de visitas
+    .container
+      .main-content
+        div
+          label Nombre
+          input#nombre
+        div
+          label Mensaje
+          textarea#mensaje
 
-  button#boton Firmar
+        button#boton Firmar
 
-  div#saludo
+        div#saludo
 
-  script.
-    $(document).ready(function(){
-        $('#boton').on('click', function(){
+        script.
+          $(document).ready(function(){
+            $('#boton').on('click', function(){
 
-            var nombre = $('#nombre').val();
-            var mensaje = $('#mensaje').val();
+              var nombre = $('#nombre').val();
+              var mensaje = $('#mensaje').val();
 
-            $.post( "/firmas", {name: nombre, message: mensaje})
+              $.post( "/firmas", {name: nombre, message: mensaje})
                 .done( function( data ) {
-                    $('#saludo').html(data);
+                  $('#saludo').html(data);
                 })
                 .error( function( data ) {
-                    $('#saludo').html('Error: ' + data.responseText);
+                  $('#saludo').html('Error: ' + data.responseText);
                 });
-        });
-    });
+            });
+          });
+
+    footer
+      p Running on node with Express & Jade
+
+ 

@@ -11,15 +11,6 @@ module.exports = function(){
     .get(function(req, res){
         res.render('index', { title : 'Home' });
     });
-
-    router.route('/firmas')
-    .post(guestbook.postEntry)
-    .get(guestbook.getEntries);
-
-    router.route('/firmas/:name')
-    .get(guestbook.getEntry);
-
-
     return router;
 
 };

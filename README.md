@@ -1,9 +1,9 @@
-# Ejecutando
+# Ejecutar
 
 1. `$ npm install`
 2. Agrega `"main": app.js` a la configuración de package.json
 
-# User Nodemon
+# Use Nodemon
 
 `$ npm install -g nodemon` (probablemente requiera privilegios como su o sudo)
 
@@ -29,32 +29,85 @@ routes/index.js:19
 
 views/entries.pug
 ```
-extend layout
-block content
-
-    #wrapper
+    #entries
         ul
             each entry in entries
                 li: a(href=`firmas/${entry.name}`) #{entry.name}
 ```
 
+
 para ejecutar ésta vista, usar la llamada
 `res.render('entries', { entries });`
+
+# Reutilizar el estilo de la página principal
+
+views/layout.pug
+```
+doctype
+html
+  head
+    title Libro de visitas - My Site
+    link(rel='stylesheet', href='/css/main.css', type='text/css')
+    script(src='/jquery.js')
+  body
+    header
+      h1 Mi libro de visitas
+    .container
+      .main-content
+        block content
+      .sidebar
+        block sidebar
+    footer
+      p Running on node with Express & Jade
+
+```
+
+views/index.pug
+```
+extend layout
+block content
+ 
+  div
+    label Nombre
+    input#nombre
+  div
+    label Mensaje
+    textarea#mensaje
+
+  button#boton Firmar
+
+  div#saludo
+
+  script.
+    $(document).ready(function(){
+        $('#boton').on('click', function(){
+
+            var nombre = $('#nombre').val();
+            var mensaje = $('#mensaje').val();
+
+            $.post( "/firmas", {name: nombre, message: mensaje})
+                .done( function( data ) {
+                    $('#saludo').html(data);
+                })
+                .error( function( data ) {
+                    $('#saludo').html('Error: ' + data.responseText);
+                });
+        });
+    });
+```
 
 # Crear una vista para una firma específica
 
 views/entry.pug
 ```
-extend layout
-block content
-
-    #wrapper
-        #entry-name #{entry.name}
-        #entry-message #{entry.message}
+#entry
+    #entry-name #{entry.name}
+    #entry-message #{entry.message}
 
 ```
 
 recuerda agregar la llamada a `render()`!
+también extender el layout
 
 # Aplicar los estilos
 
